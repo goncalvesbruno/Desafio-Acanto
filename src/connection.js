@@ -1,10 +1,10 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
 const connection = mysql.createConnection(
     {
         host: "localhost",
-        user: "root",
-        password: "bruno",
+        user: "bruno",
+        password: "admin",
         database: "futebol"
     }
 );
@@ -12,7 +12,8 @@ const connection = mysql.createConnection(
 connection.connect(function (err){
     if (err){
         console.log(err)
-    } else {console.log("Connected to DB!")}
+    } else {console.log("Connected to DB!");
+}
 
 /*  TESTE DE QUERY
 connection.query("SELECT * FROM equipes", function(err, results, fields){
