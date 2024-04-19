@@ -4,6 +4,8 @@ const playerRoutes = Router();
 
 const playerController = new PlayerController();
 
-playerRoutes.get("/players", playerController.indexPlayers);
+playerRoutes.get("/", playerController.indexPlayers);
+
+playerRoutes.post("/add", playerController.createPlayer);
 
 module.exports = playerRoutes;

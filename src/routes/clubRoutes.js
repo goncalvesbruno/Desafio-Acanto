@@ -1,10 +1,11 @@
 const { Router } = require('express');
 const ClubController = require('../controllers/ClubController');
-const club = require('../models/club');
 const clubRoutes = Router();
 
-const clubController = new clubController();
+const clubController = new ClubController();
 
-clubRoutes.get("/clubs", clubController.index);
+clubRoutes.get("/", clubController.indexClubs);
+
+clubRoutes.post("/add", clubController.createClub);
 
 module.exports = clubRoutes;
