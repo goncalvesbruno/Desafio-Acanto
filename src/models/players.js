@@ -1,4 +1,4 @@
-const {Model, DataTypes, UUID, UUIDV4, UUIDV1 } = require('sequelize');
+const { Model, DataTypes, UUIDV1 } = require('sequelize');
 const Club = require('./clubs');
 
 class players extends Model {
@@ -7,30 +7,33 @@ class players extends Model {
             {
                 player_id: {
                     type: DataTypes.UUID,
-                    autoIncrement: true,
                     primaryKey: true,
-                    autoIncrementIdentity: true,
-                    unique: true,
-                    defaultValue:UUIDV1
-                                     
-                },
+                    defaultValue: UUIDV1,
+                    unique: true
+                },                 
                 long_name: DataTypes.STRING,
                 age: DataTypes.INTEGER,
                 nationality_name: DataTypes.STRING,  
                 club_name: DataTypes.STRING, 
-                player_position: DataTypes.STRING, 
-
-        }, {
-            sequelize,
-            freezeTableName: true
-        }    )
+                player_position: DataTypes.STRING
+            }, 
+            {
+                sequelize,
+                freezeTableName: true
+            }
+        );
     }
+
+    // Associação 1 para muitos, 1 clube tem muitos jogadores, 1 jogador tem 1 clube
+    static associate(models) {
+        this.belongsTo(models.Club, {
+            foreignKey: 'club_team_id',
+        });
+        this.hasOne(Club);
+        Club.hasMany(this);
+    }
+    
+
 }
 
-/*
-Player.belongsTo(Club, {
-    constraints: true,
-    foreignKey: 'club_team_id'
-})
-*/
 module.exports = players;

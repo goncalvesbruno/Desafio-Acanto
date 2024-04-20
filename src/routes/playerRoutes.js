@@ -8,4 +8,8 @@ playerRoutes.get("/", playerController.indexPlayers);
 
 playerRoutes.post("/add", playerController.createPlayer);
 
+playerRoutes.put("/transf", playerController.transferPlayer);
+
+playerRoutes.delete("/del", playerController.deletePlayer);
+
 module.exports = playerRoutes;
